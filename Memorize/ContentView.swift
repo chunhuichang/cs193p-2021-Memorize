@@ -14,7 +14,7 @@ struct ContentView: View {
         VStack {
             HStack {
                 ScrollView {
-                    LazyVGrid(columns:[GridItem(),GridItem(), GridItem()]) {
+                    LazyVGrid(columns:[GridItem(.adaptive(minimum: 100))]) {
                         ForEach(emojis[0..<emojiCount], id: \.self) { emoji in
                             CardView(content: emoji)
                                 .aspectRatio(2/3, contentMode: .fit)
@@ -64,7 +64,7 @@ struct CardView: View {
             let shape = RoundedRectangle(cornerRadius: 20)
             if isFaceup {
                 shape.fill().foregroundColor(.white)
-                shape.strokeBorder(lineWidth: 9)
+                shape.strokeBorder(lineWidth: 3)
                 
                 Text(content).font(.largeTitle)
             } else {
