@@ -17,8 +17,10 @@ class EmojiMemoryGame {
         }
     }
     
+    // one way is set private(set) var model, don't need var cards below
     private var model: MemoryGame<String> = createMemoryGame()
     
+    // expose cards parameter via var, better then model.cards
     var cards: [MemoryGame<String>.Card]{
         model.cards
     }
