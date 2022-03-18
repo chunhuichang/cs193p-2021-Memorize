@@ -9,6 +9,8 @@
 import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
+    typealias Card = MemoryGame<String>.Card
+    
     private static let emojis = ["🚒","🛺","🚞","🛳","🚎","🛵","🚡","🚢","🚔","🚜","🚙","🏎","🚲","🛴","🦼","🦽","✈️","🛫","🛬","🛩","💺","🚂","⛴","🛥"]
     
     private static func createMemoryGame() -> MemoryGame<String> {
@@ -18,15 +20,15 @@ class EmojiMemoryGame: ObservableObject {
     }
     
     // one way is set private(set) var model, don't need var cards below
-    @Published private var model: MemoryGame<String> = createMemoryGame()
+    @Published private var model = createMemoryGame()
     
     // expose cards parameter via var, better then model.cards
-    var cards: [MemoryGame<String>.Card]{
+    var cards: [Card]{
         model.cards
     }
     
     // MARK: - Intent(s)
-    func choose(_ card: MemoryGame<String>.Card) {
+    func choose(_ card: Card) {
         model.choose(card: card)
     }
     
