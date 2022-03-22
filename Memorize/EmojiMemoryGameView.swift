@@ -36,7 +36,9 @@ struct CardView: View {
                 if card.isFaceUp {
                     shape.fill().foregroundColor(.white)
                     shape.strokeBorder(lineWidth: DrawingConstans.lineWidth)
-                    
+                    Pie(startAngle: Angle(degrees: 0-90), endAngle: Angle(degrees: 110-90))
+                        .padding(5)
+                        .opacity(0.5)
                     Text(card.content)
                         .font(font(in: geometry.size))
                 } else {
@@ -53,15 +55,16 @@ struct CardView: View {
     private struct DrawingConstans {
         static let cornerRadius: CGFloat = 10
         static let lineWidth: CGFloat = 3
-        static let fontScale: CGFloat = 0.75
+        static let fontScale: CGFloat = 0.65
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let game = EmojiMemoryGame()
-        EmojiMemoryGameView(game: game).previewDevice("iPhone 13").preferredColorScheme(.dark)
-        EmojiMemoryGameView(game: game).preferredColorScheme(.dark)
-        EmojiMemoryGameView(game: game).preferredColorScheme(.light)
+        game.choose(game.cards.first!)
+        return EmojiMemoryGameView(game: game).previewDevice("iPhone 13").preferredColorScheme(.dark)
+        //        EmojiMemoryGameView(game: game).preferredColorScheme(.dark)
+        //        EmojiMemoryGameView(game: game).preferredColorScheme(.light)
     }
 }
