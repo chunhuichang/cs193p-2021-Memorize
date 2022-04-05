@@ -68,3 +68,28 @@ struct ContentView_Previews: PreviewProvider {
         //        EmojiMemoryGameView(game: game).preferredColorScheme(.light)
     }
 }
+
+
+struct AnimationView: View {
+    @State var upsideDown = true
+    
+    var body: some View {
+        let scary = true
+        Text("🚎")
+            .font(.system(size: 100))
+            .opacity(scary ? 1 : 0)
+            .rotationEffect(Angle.degrees(upsideDown ? 180 : 0))
+            .animation(.spring(response: 0.2))
+            .onTapGesture {
+                upsideDown = !upsideDown
+            }
+    }
+    
+}
+
+struct AnimationView_Previews: PreviewProvider {
+    static var previews: some View {
+        AnimationView().preferredColorScheme(.dark)
+        AnimationView().preferredColorScheme(.light)
+    }
+}
